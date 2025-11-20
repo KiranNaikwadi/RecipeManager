@@ -183,7 +183,7 @@ function loadInitialData() {
       ],
       prepTime: 30,
       difficulty: "medium",
-      imageUrl: "images/PavBhaji.jpg"
+      imageUrl: "https://www.pexels.com/photo/cooked-food-on-stainless-steel-tray-7625089/"
     },
 
     {
