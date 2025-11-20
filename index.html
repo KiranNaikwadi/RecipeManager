@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe Manager</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="bg-image">
+
+  <header class="header-box">
+    <div class="container header-wrap">
+      <h1 class="brand-logo">Recipe <span>Manager</span></h1>
+      <nav class="top-nav">
+        <button id="addRecipeBtn" class="btn-main">+ Add Recipe</button>
+      </nav>
+    </div>
+
+    <div class="hero-box container">
+      <div class="hero-left">
+        <h2>Cook. Save. Share.</h2>
+        <div class="filter-controls">
+          <input type="text" id="searchInput" placeholder="Search recipes..." />
+          <select id="difficultyFilter">
+            <option value="all">All</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="recipeList" class="recipe-cards" aria-live="polite"></section>
+  </main>
+
+  <section id="recipeFormSection" class="hide-box modal-box" aria-hidden="true">
+
+    <form id="recipeForm" class="form-box" novalidate>
+      <h2 id="formTitle">Add Recipe</h2>
+
+      <label for="title">Title</label>
+      <input type="text" id="title" required />
+
+      <label for="description">Short description</label>
+      <textarea id="description" rows="2" required></textarea>
+
+      <label for="ingredients">Ingredients</label>
+      <textarea id="ingredients" rows="2" required></textarea>
+
+      <label for="steps">Steps</label>
+      <textarea id="steps" rows="4" required></textarea>
+
+      <label for="prepTime">Preparation time</label>
+      <input type="number" id="prepTime" min="1" required />
+
+      <label for="difficulty">Difficulty</label>
+      <select id="difficulty" required>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+
+      <label for="imageFile">Image</label>
+      <input type="file" id="imageFile" accept="image/*" />
+
+      <label for="imageUrl">Or Image URL</label>
+      <input type="text" id="imageUrl" placeholder="assets/your-image.jpg" />
+
+      <div class="img-preview" id="imagePreview"></div>
+
+      <div class="form-btn-row">
+        <button type="submit" id="saveRecipeBtn" class="btn-main">Save</button>
+        <button type="button" id="cancelBtn" class="btn-light">Cancel</button>
+      </div>
+    </form>
+
+  </section>
+
+  <footer class="footer-box">
+    <div class="container footer-wrap">
+      <p>&copy;kirannaikwadi28@gmail.com</p>
+      <p class="text-small"><strong>Contact Us:</strong>8668294434</p>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
