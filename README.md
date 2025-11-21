@@ -3,6 +3,7 @@ A simple and interactive Recipe Manager web application that allows users to add
 
 The app is built using HTML, CSS, and JavaScript without any backend.
 
+
 Add new recipe with:
 Title
 Short description
@@ -22,6 +23,7 @@ Responsive design
 All data saved in localStorage
 
 
+
 Application Structure:
 RecipeWebApp/
 ├── index.html        # HTML file
@@ -32,6 +34,7 @@ RecipeWebApp/
 │   └── storage.js    # LocalStorage
 ├──images             # images  
 └── README.md         # Project documentation
+
 
 
 JavaScript Modules
