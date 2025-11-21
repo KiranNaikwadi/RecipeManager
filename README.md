@@ -1,10 +1,10 @@
-Information About Project:
+## Information About Project:
 A simple and interactive Recipe Manager web application that allows users to add, edit, delete, and view recipes. Users can filter recipes by difficulty, search by title, and view recipe details with ingredients, steps, and preparation time. The app uses localStorage to save recipes and works offline.
 
 The app is built using HTML, CSS, and JavaScript without any backend.
 
 
-Add new recipe with:
+## Add new recipe with:
 Title
 Short description
 Ingrediants
@@ -24,7 +24,7 @@ All data saved in localStorage
 
 
 
-Application Structure:
+## Application Structure:
 RecipeWebApp/
 ├── index.html        # HTML file
 ├── css/
@@ -37,7 +37,7 @@ RecipeWebApp/
 
 
 
-JavaScript Modules
+## JavaScript Modules
 Script.js and Strorage.js
 
 renderRecipes() – Displays recipes in cards, handles No recipes available.
@@ -52,13 +52,13 @@ deleteRecipe(id) – Deletes the recipe after confirmation.
 
 Image Handling – Supports both file upload and URL input with preview.
 
-LocalStorage Functions:
+## LocalStorage Functions:
 getRecipes():Retrieves all recipes
 addRecipe(recipe): Adds a new recipe
 updateRecipe(recipe): Updates an existing recipe
 removeRecipe(id):Deletes a recipe
 
-Data Structure:
+## Data Structure:
 {
   id: Date.now() + 10,
   title: "Masala Dosa",
@@ -77,7 +77,7 @@ Data Structure:
 }
 
 
-Assumptions:
+## Assumptions:
 Recipes are managed entirely on the client-side using localStorage.
 Recipe image is optional; a default image is displayed if none is provided.
 The app works on modern browsers Chrome, Firefox.
@@ -85,7 +85,7 @@ Users provide ingredients as comma-separated values.
 Steps are entered as newline-separated text.
 
 
-Limitations:
+## Limitations:
 No backend: recipes are lost if localStorage is cleared.
 No user authentication; anyone can add/edit/delete.
 Images uploaded are not stored permanently; only base64 is saved in localStorage.
@@ -93,19 +93,19 @@ Maximum image size is limited by localStorage capacity
 
 
 
-Known Issues:
+## Known Issues:
 Large images may cause slow rendering due to base64 storage.
 LocalStorage is limited; too many recipes may fail to save.
 Mobile responsiveness works but may need tweaks for very small screens
 
 
-How to run the app:
+## How to run the app:
 Open index.html in a browser.
 Add, edit, delete recipes using the interface.
 Use search and difficulty filter to find recipes.
 Click Read More to see full details/Recipe in a App.
 
-Usage:
+## Usage:
 Click Add Recipes to open the form.
 Fill all required fields.
 Upload an image or provide an image URL.
