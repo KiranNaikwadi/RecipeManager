@@ -196,7 +196,7 @@ function showDetail(id) {
     <ul>${(r.ingredients || []).map(i => `<li>${escapeHtml(i)}</li>`).join("")}</ul>
     <h4>Steps:</h4>
     <ol>${(r.steps || []).map(s => `<li>${escapeHtml(s)}</li>`).join("")}</ol>
-    <p><strong>Prep:</strong> ${r.prepTime} mins &nbsp; <strong>Difficulty:</strong> ${escapeHtml(r.difficulty)}</p>
+    <p><strong>Prep: |</strong> ${r.prepTime} mins &nbsp; <strong>Difficulty:</strong> ${escapeHtml(r.difficulty)}</p>
   `;
   detailModal.classList.remove("hide-box");
 }

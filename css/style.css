@@ -67,7 +67,7 @@ body {
 .filter-row input {
     padding: 0.6rem 0.8rem;
     border-radius: 8px;
-    border: 1px solid #bb2a2a;
+    border: 2px solid #bb2a2a;
     font-size: 0.95rem;
     flex: 1;
     min-width: 260px;
@@ -80,6 +80,8 @@ body {
     font-size: 0.95rem;
     flex: 1;
     min-width: 120px;
+    border: 2px solid #bb2a2a;
+
 }
 
 .btn-main {
@@ -168,7 +170,6 @@ body {
     margin-top: 5px;
 }
 
-/* Buttons different style */
 .read-more-btn {
     background: #ef5348;
     border: none;
@@ -180,7 +181,7 @@ body {
     font-size: 0.85rem;
     flex: 1;
     transition: 0.2s;
-    margin: 3px 0; /* small spacing top/bottom */
+    margin: 3px 0; 
 }
 
 .read-more-btn:hover {
@@ -310,6 +311,7 @@ body {
     text-align: center;
     background: #6a5acd;
     color: #fff;
+    font-family: 'Pacifico', cursive;
 }
 
 .footer-logos {
