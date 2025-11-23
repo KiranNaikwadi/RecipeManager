@@ -81,7 +81,7 @@ function loadInitialData() {
         "Serve hot with naan, roti, or rice."
       ],
       prepTime: 30,
-      difficulty: "Medium",
+      difficulty: "medium",
       imageUrl: "images/Paneer Toofani.jpg"
     },
     {
@@ -109,7 +109,7 @@ function loadInitialData() {
     "Serve hot with yogurt or pickle."
   ],
   prepTime: 25,
-  difficulty: "Easy",
+  difficulty: "easy",
   imageUrl: "images/Aloo Paratha.jpg"
 },
 {
@@ -140,7 +140,7 @@ function loadInitialData() {
     "Serve hot."
   ],
   prepTime: 20,
-  difficulty: "Easy",
+  difficulty: "easy",
   imageUrl: "images/MasalaRice.jpg"
 },
 {
@@ -167,7 +167,7 @@ function loadInitialData() {
     "Serve hot with buttered pav buns."
   ],
   prepTime: 30,
-  difficulty: "Medium",
+  difficulty: "medium",
   imageUrl: "images/PavBhaji.jpg"
 },{
   id: Date.now() + 5,
@@ -187,7 +187,7 @@ function loadInitialData() {
     "Serve hot with chutney or sambar."
   ],
   prepTime: 20,
-  difficulty: "Easy",
+  difficulty: "easy",
   imageUrl: "images/Idli.jpg"
 },
 {
@@ -217,7 +217,7 @@ function loadInitialData() {
     "Serve hot with rice or roti."
   ],
   prepTime: 25,
-  difficulty: "Easy",
+  difficulty: "easy",
   imageUrl: "images/EggCurry.jpg"
 },{
   id: Date.now() + 7,
@@ -244,7 +244,7 @@ function loadInitialData() {
     "Serve hot with chutney or pickle."
   ],
   prepTime: 15,
-  difficulty: "Easy",
+  difficulty: "easy",
   imageUrl: "images/Upma.jpg"
 },
 {
@@ -271,7 +271,7 @@ function loadInitialData() {
     "Serve immediately."
   ],
   prepTime: 20,
-  difficulty: "Easy",
+  difficulty: "easy",
   imageUrl: "images/ShevBhaji.jpg"
 },
 {
@@ -299,7 +299,7 @@ function loadInitialData() {
     "Garnish with coriander and serve hot."
   ],
   prepTime: 10,
-  difficulty: "Easy",
+  difficulty: "easy",
   imageUrl: "images/Poha.jpg"
 },
 {
@@ -329,7 +329,7 @@ function loadInitialData() {
     "Serve hot with chutney and sambar."
   ],
   prepTime: 35,
-  difficulty: "Medium",
+  difficulty: "medium",
   imageUrl: "images/MasalaDosa.jpg"
 }
 
