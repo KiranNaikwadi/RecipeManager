@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -14,7 +14,7 @@
 </head>
 <body class="bg-image">
 
-  <!-- HEADER -->
+
   <header class="header-box">
     <div class="container header-wrap">
       <h1 class="brand-logo">Recipe <span>Hub<i class="fas fa-utensils"></i></span></h1>
@@ -28,21 +28,19 @@
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
           </select>
-          <button id="addRecipeBtn" class="btn-main">Add Recipe</button>
+          <button id="addRecipeBtn" class="btn-main">Add New Recipes</button>
         </div>
       </div>
     </div>
   </header>
 
-  
   <main class="container">
     <section id="recipeList" class="recipe-cards"></section>
   </main>
 
-  <!-- RECIPE FORM MODAL -->
   <section id="recipeFormSection" class="hide-box modal-box">
     <form id="recipeForm" class="form-box" novalidate>
-      <h2 id="formTitle">Add Recipe</h2>
+      <h2 id="formTitle" style="text-align: center; color: rgb(204, 255, 0);">Add New Recipe</h2>
 
       <label for="title">Title</label>
       <input type="text" id="title" required />
@@ -69,8 +67,8 @@
       <label for="imageFile">Image</label>
       <input type="file" id="imageFile" accept="image/*" />
 
-      <label for="imageUrl">Image URL</label>
-      <input type="text" id="imageUrl" placeholder="assets/your-image.jpg" />
+      <label for="">Image URL</label>
+      <input type="text" id="imageUrl" placeholder="image.jpg" />
 
       <div class="img-preview" id="imagePreview"></div>
 
@@ -81,7 +79,7 @@
     </form>
   </section>
 
-  <!-- RECIPE DETAIL MODAL -->
+  
   <section id="recipeDetailModal" class="hide-box modal-box">
     <div class="recipe-detail-box">
       <span id="closeDetail" class="close-btn">&times;</span>
@@ -91,21 +89,24 @@
 
   <footer class="footer-box">
   <div class="container footer-wrap">
-    <!-- Logos row -->
+    
     <div class="footer-logos">
       <img src="images/instagram.png" alt="Logo 1" class="footer-logo" />
       <img src="images/facebook.png" alt="Logo 2" class="footer-logo" />
       <img src="images/google.png" alt="Logo 3" class="footer-logo" />
     </div>
 
-    <!-- Text row -->
+    
     <p>&copy; kirannaikwadi28@gmail.com</p>
     <p class="text-small"><strong>Contact Us:</strong> 8668294434</p>
   </div>
 </footer>
 
-
   <script src="js/storage.js"></script>
   <script src="js/script.js"></script>
 </body>
-</html>
+ </html> 
+
+
+
+ 

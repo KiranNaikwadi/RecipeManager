@@ -23,6 +23,23 @@ body {
 .brand-logo span {
     color: #ffdf7e;
 }
+/* 
+.back-btn {
+  display: none;
+  padding: 10px 18px;
+  background: purple;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+.back-btn:hover {
+  background: #5a0d82;
+} */
+
+
 
 .container {
     width: 90%;
@@ -70,7 +87,7 @@ body {
     border: 2px solid #bb2a2a;
     font-size: 0.95rem;
     flex: 1;
-    min-width: 260px;
+    min-width: 280px;
 }
 
 .filter-row select {
@@ -79,7 +96,7 @@ body {
     border: 1px solid #ccc;
     font-size: 0.95rem;
     flex: 1;
-    min-width: 120px;
+    min-width: 80px;
     border: 2px solid #bb2a2a;
 
 }
@@ -243,23 +260,30 @@ body {
 }
 
 .form-box {
-    background: #c8f6de;
     width: 100%;
-    max-width: 420px;
+    max-width: 450px;
     padding: 1.3rem;
     border-radius: 16px;
     box-shadow: 0 4px 14px rgba(0,0,0,0.22);
     display: flex;
     flex-direction: column;
     gap: 0.7rem;
-    max-height: 85vh;
-    overflow-y: auto;
-    background-image: url("../images/background.jpg");
+    /* max-height: 200vh; */
+    height:800px;
+    /* overflow-y:auto;   */
+    background-image: linear-gradient(rgba(60, 59, 59, 0.4), rgba(198, 194, 194, 0.4)), url("../images/form-img.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: 'Dancing Script', cursive;
+
+
 }
 
 .form-box label {
     font-size: 0.9rem;
     font-weight: 600;
+    color:rgb(255, 11, 2)
+    /* background-color: chartreuse; */
 }
 
 .form-box input,
@@ -267,8 +291,9 @@ body {
 .form-box select {
     padding: 0.6rem;
     border-radius: 8px;
-    border: 1px solid #aaa;
+    border: 1px solid #706f6f;
     font-size: 1rem;
+    background-color: #fcf9f9;
 }
 
 .form-btn-row {
@@ -282,16 +307,16 @@ body {
     height: 150px;
     background: #ddd;
     border-radius: 10px;
-    display: none;
+    display: none !important;
     background-size: cover;
     background-position: center;
 }
 
 .recipe-detail-box {
-    background: #fff;
+    background: #06b3ad;
     max-width: 600px;
     width: 90%;
-    border-radius: 12px;
+    border-radius: 20px;
     padding: 1rem;
     max-height: 80vh;
     overflow-y: auto;

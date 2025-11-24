@@ -46,15 +46,21 @@ function renderRecipes() {
   recipeList.innerHTML = "";
 
   if (filtered.length === 0) {
+    recipeList.innerHTML = ""; 
+
+    recipeList.style.display = "flex";
+    recipeList.style.justifyContent = "center";
+    recipeList.style.alignItems = "center";
+
     const msg = document.createElement("div");
-    msg.textContent = "No recipes available.";
-    msg.style.textAlign = "center";
-    msg.style.marginTop = "20px";
-    msg.style.fontSize = "1.2rem";
-    msg.style.color = "#333"; // visible color
+    msg.textContent = "Recipe Not Available";
+    msg.style.fontSize = "1.99rem";
+    msg.style.color="yellow";
+    
     recipeList.appendChild(msg);
     return;
-  }
+}
+
 
   filtered.forEach(r => {
     const card = document.createElement("div");
@@ -143,7 +149,7 @@ recipeForm.addEventListener("submit", function(e) {
     };
     reader.readAsDataURL(file);
   } else {
-    if (!recipeData.imageUrl) recipeData.imageUrl = "assets/default.jpg";
+    if (!recipeData.imageUrl) recipeData.imageUrl = "default.jpg";
     saveRecipeData(recipeData);
   }
 });
@@ -173,7 +179,7 @@ function editRecipe(id) {
 
   if (r.imageUrl) {
     imagePreview.style.backgroundImage = `url(${r.imageUrl})`;
-    imagePreview.style.display = "block";
+    imagePreview.style.display = "none";
   } else imagePreview.style.display = "none";
 
   recipeFormSection.classList.remove("hide-box");
@@ -190,7 +196,7 @@ function showDetail(id) {
   if (!r) return;
   detailContent.innerHTML = `
     <h2>${escapeHtml(r.title)}</h2>
-    <img src="${r.imageUrl || 'assets/default.jpg'}" style="width:110%; max-height:250px; object-fit:cover; border-radius:8px; margin-bottom:8px;">
+    <img src="${r.imageUrl || 'default.jpg'}" style="width:110%; max-height:250px; object-fit:cover; border-radius:8px; margin-bottom:8px;">
     <p><strong>Description:</strong> ${escapeHtml(r.description)}</p>
     <h4>Ingredients:</h4>
     <ul>${(r.ingredients || []).map(i => `<li>${escapeHtml(i)}</li>`).join("")}</ul>
@@ -208,3 +214,5 @@ if (searchInput) searchInput.addEventListener("input", renderRecipes);
 if (difficultyFilter) difficultyFilter.addEventListener("change", renderRecipes);
 
 renderRecipes();
+
+
