@@ -20,6 +20,7 @@ const cancelBtn = document.getElementById("cancelBtn");
 const detailModal = document.getElementById("recipeDetailModal");
 const detailContent = document.getElementById("detailContent");
 const closeDetail = document.getElementById("closeDetail");
+const backBtn = document.getElementById("backBtn");
 
 let editingId = null;
 
@@ -46,21 +47,16 @@ function renderRecipes() {
   recipeList.innerHTML = "";
 
   if (filtered.length === 0) {
-    recipeList.innerHTML = ""; 
-
     recipeList.style.display = "flex";
     recipeList.style.justifyContent = "center";
     recipeList.style.alignItems = "center";
 
     const msg = document.createElement("div");
     msg.textContent = "Recipe Not Available";
-    msg.style.fontSize = "1.99rem";
-    msg.style.color="yellow";
-    
+    msg.style.fontSize = "1.8rem";
+    msg.style.color = "yellow";
     recipeList.appendChild(msg);
-    return;
-}
-
+  }
 
   filtered.forEach(r => {
     const card = document.createElement("div");
@@ -89,6 +85,13 @@ function renderRecipes() {
 
     recipeList.appendChild(card);
   });
+
+  // Show back button if search or filter applied
+  if ((searchInput.value && searchInput.value.trim() !== "") || (diff !== "all")) {
+    backBtn.classList.remove("hide-box");
+  } else {
+    backBtn.classList.add("hide-box");
+  }
 }
 
 addRecipeBtn.addEventListener("click", () => {
@@ -207,6 +210,12 @@ function showDetail(id) {
   detailModal.classList.remove("hide-box");
 }
 
+document.getElementById("backBtn").addEventListener("click", () => {
+  searchInput.value = "";
+  difficultyFilter.value = "all";
+  renderRecipes();
+});
+
 closeDetail.addEventListener("click", () => detailModal.classList.add("hide-box"));
 detailModal.addEventListener("click", e => { if(e.target === detailModal) detailModal.classList.add("hide-box"); });
 
@@ -214,5 +223,3 @@ if (searchInput) searchInput.addEventListener("input", renderRecipes);
 if (difficultyFilter) difficultyFilter.addEventListener("change", renderRecipes);
 
 renderRecipes();
-
-

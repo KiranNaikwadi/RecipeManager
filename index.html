@@ -1,19 +1,14 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Recipe Manager</title>
   <link rel="stylesheet" href="css/style.css" />
- <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'/> 
-  <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-/>
-
+  <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'/> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body class="bg-image">
-
 
   <header class="header-box">
     <div class="container header-wrap">
@@ -29,6 +24,7 @@
             <option value="hard">Hard</option>
           </select>
           <button id="addRecipeBtn" class="btn-main">Add New Recipes</button>
+          <button id="backBtn" class="back-btn hide-box"><i class="fas fa-arrow-left"></i> Back</button>
         </div>
       </div>
     </div>
@@ -79,7 +75,6 @@
     </form>
   </section>
 
-  
   <section id="recipeDetailModal" class="hide-box modal-box">
     <div class="recipe-detail-box">
       <span id="closeDetail" class="close-btn">&times;</span>
@@ -88,25 +83,18 @@
   </section>
 
   <footer class="footer-box">
-  <div class="container footer-wrap">
-    
-    <div class="footer-logos">
-      <img src="images/instagram.png" alt="Logo 1" class="footer-logo" />
-      <img src="images/facebook.png" alt="Logo 2" class="footer-logo" />
-      <img src="images/google.png" alt="Logo 3" class="footer-logo" />
+    <div class="container footer-wrap">
+      <div class="footer-logos">
+        <img src="images/instagram.png" alt="Logo 1" class="footer-logo" />
+        <img src="images/facebook.png" alt="Logo 2" class="footer-logo" />
+        <img src="images/google.png" alt="Logo 3" class="footer-logo" />
+      </div>
+      <p>&copy; kirannaikwadi28@gmail.com</p>
+      <p class="text-small"><strong>Contact Us:</strong> 8668294434</p>
     </div>
-
-    
-    <p>&copy; kirannaikwadi28@gmail.com</p>
-    <p class="text-small"><strong>Contact Us:</strong> 8668294434</p>
-  </div>
-</footer>
+  </footer>
 
   <script src="js/storage.js"></script>
   <script src="js/script.js"></script>
 </body>
- </html> 
-
-
-
- 
+</html>
