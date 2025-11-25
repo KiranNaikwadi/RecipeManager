@@ -13,16 +13,23 @@
   <header class="header-box">
     <div class="container header-wrap">
       <h1 class="brand-logo">Recipe <span>Hub<i class="fas fa-utensils"></i></span></h1>
+
       <div class="header-right">
         <h2 class="tagline">Cook. Save. Share.</h2>
+
         <div class="filter-row">
           <input type="text" id="searchInput" placeholder="Search recipes..." />
+
           <select id="difficultyFilter">
             <option value="all">All</option>
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
           </select>
+
+          <!-- TIME INPUT (EXACT MATCH) -->
+          <input type="number" id="timeFilter" placeholder="Enter Time (mins)" min="1" />
+
           <button id="addRecipeBtn" class="btn-main">Add New Recipes</button>
           <button id="backBtn" class="back-btn hide-box"><i class="fas fa-arrow-left"></i> Back</button>
         </div>
@@ -63,7 +70,7 @@
       <label for="imageFile">Image</label>
       <input type="file" id="imageFile" accept="image/*" />
 
-      <label for="">Image URL</label>
+      <label>Image URL</label>
       <input type="text" id="imageUrl" placeholder="image.jpg" />
 
       <div class="img-preview" id="imagePreview"></div>

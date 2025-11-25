@@ -1,6 +1,7 @@
 const recipeList = document.getElementById("recipeList");
 const searchInput = document.getElementById("searchInput");
 const difficultyFilter = document.getElementById("difficultyFilter");
+const timeFilter = document.getElementById("timeFilter"); 
 const addRecipeBtn = document.getElementById("addRecipeBtn");
 const recipeFormSection = document.getElementById("recipeFormSection");
 const recipeForm = document.getElementById("recipeForm");
@@ -26,23 +27,33 @@ let editingId = null;
 
 function escapeHtml(text) {
   if (!text && text !== 0) return "";
-  return String(text).replace(/&/g,"&amp;")
-                     .replace(/</g,"&lt;")
-                     .replace(/>/g,"&gt;")
-                     .replace(/"/g,"&quot;")
-                     .replace(/'/g,"&#039;");
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
 function renderRecipes() {
   const recipes = getRecipes();
-  const searchText = (searchInput?.value || "").toLowerCase();
-  const diff = difficultyFilter?.value || "all";
+  const searchText = (searchInput.value || "").toLowerCase();
+  const diff = difficultyFilter.value || "all";
+  const timeValue = timeFilter.value.trim();
 
   let filtered = recipes.filter(r =>
     r.title.toLowerCase().includes(searchText)
   );
 
-  if (diff !== "all") filtered = filtered.filter(r => r.difficulty === diff);
+  if (diff !== "all") {
+    filtered = filtered.filter(r => r.difficulty === diff);
+  }
+
+  // UPDATED TIME FILTER: <= INPUT TIME
+  if (timeValue !== "") {
+    const maxTime = parseInt(timeValue, 10);
+    filtered = filtered.filter(r => r.prepTime <= maxTime);
+  }
 
   recipeList.innerHTML = "";
 
@@ -56,23 +67,28 @@ function renderRecipes() {
     msg.style.fontSize = "1.8rem";
     msg.style.color = "yellow";
     recipeList.appendChild(msg);
+    return;
   }
+
+  recipeList.style.display = "grid";
 
   filtered.forEach(r => {
     const card = document.createElement("div");
     card.className = "recipe-card";
 
     card.innerHTML = `
-      <img src="${r.imageUrl || 'assets/default.jpg'}" alt="${escapeHtml(r.title)}" />
+      <img src="${r.imageUrl || 'default.jpg'}" />
       <h3>${escapeHtml(r.title)}</h3>
       <p>${escapeHtml(r.description)}</p>
       <div class="recipe-info">
         <span>Prep: ${r.prepTime} mins</span>
-        <span>Difficulty: ${escapeHtml(r.difficulty)}</span>
+        <span>Difficulty: ${r.difficulty}</span>
       </div>
+
       <div class="read-more-top">
         <button class="read-more-btn">Read More</button>
       </div>
+
       <div class="card-btns">
         <button class="btn-main">Edit</button>
         <button class="btn-light">Delete</button>
@@ -86,8 +102,7 @@ function renderRecipes() {
     recipeList.appendChild(card);
   });
 
-  // Show back button if search or filter applied
-  if ((searchInput.value && searchInput.value.trim() !== "") || (diff !== "all")) {
+  if (searchText || diff !== "all" || timeValue !== "") {
     backBtn.classList.remove("hide-box");
   } else {
     backBtn.classList.add("hide-box");
@@ -107,6 +122,7 @@ cancelBtn.addEventListener("click", () => recipeFormSection.classList.add("hide-
 imageFileInput.addEventListener("change", function() {
   const file = this.files[0];
   if (!file) { imagePreview.style.display = "none"; return; }
+
   const reader = new FileReader();
   reader.onload = e => {
     imagePreview.style.backgroundImage = `url(${e.target.result})`;
@@ -125,25 +141,19 @@ imageUrlInput.addEventListener("input", function() {
 recipeForm.addEventListener("submit", function(e) {
   e.preventDefault();
 
-  if (!titleInput.value.trim() ||
-      !descriptionInput.value.trim() ||
-      !ingredientsInput.value.trim() ||
-      !stepsInput.value.trim() ||
-      !prepTimeInput.value.trim()
-  ) return alert("Please fill all required fields.");
-
   const recipeData = {
     id: editingId || Date.now(),
     title: titleInput.value.trim(),
     description: descriptionInput.value.trim(),
     ingredients: ingredientsInput.value.split(",").map(i => i.trim()),
     steps: stepsInput.value.split("\n").map(s => s.trim()),
-    prepTime: parseInt(prepTimeInput.value, 10) || 0,
+    prepTime: parseInt(prepTimeInput.value, 10),
     difficulty: difficultyInput.value,
-    imageUrl: imageUrlInput.value.trim() || null
+    imageUrl: imageUrlInput.value.trim() || ""
   };
 
   const file = imageFileInput.files[0];
+
   if (file) {
     const reader = new FileReader();
     reader.onload = ev => {
@@ -157,9 +167,9 @@ recipeForm.addEventListener("submit", function(e) {
   }
 });
 
-function saveRecipeData(recipeData) {
-  if (editingId) updateRecipe(recipeData);
-  else addRecipe(recipeData);
+function saveRecipeData(recipe) {
+  if (editingId) updateRecipe(recipe);
+  else addRecipe(recipe);
 
   recipeFormSection.classList.add("hide-box");
   renderRecipes();
@@ -172,54 +182,58 @@ function editRecipe(id) {
   editingId = id;
   formTitle.textContent = "Edit Recipe";
 
-  titleInput.value = r.title || "";
-  descriptionInput.value = r.description || "";
-  ingredientsInput.value = (r.ingredients || []).join(", ");
-  stepsInput.value = (r.steps || []).join("\n");
-  prepTimeInput.value = r.prepTime || "";
-  difficultyInput.value = r.difficulty || "easy";
-  imageUrlInput.value = r.imageUrl && !r.imageUrl.startsWith("data:") ? r.imageUrl : "";
-
-  if (r.imageUrl) {
-    imagePreview.style.backgroundImage = `url(${r.imageUrl})`;
-    imagePreview.style.display = "none";
-  } else imagePreview.style.display = "none";
+  titleInput.value = r.title;
+  descriptionInput.value = r.description;
+  ingredientsInput.value = r.ingredients.join(", ");
+  stepsInput.value = r.steps.join("\n");
+  prepTimeInput.value = r.prepTime;
+  difficultyInput.value = r.difficulty;
+  imageUrlInput.value = r.imageUrl;
 
   recipeFormSection.classList.remove("hide-box");
 }
 
 function deleteRecipe(id) {
-  if (!confirm("Are you sure you want to delete this recipe?")) return;
+  if (!confirm("Are you sure?")) return;
   removeRecipe(id);
   renderRecipes();
 }
 
 function showDetail(id) {
   const r = getRecipes().find(x => x.id === id);
-  if (!r) return;
+
   detailContent.innerHTML = `
     <h2>${escapeHtml(r.title)}</h2>
-    <img src="${r.imageUrl || 'default.jpg'}" style="width:110%; max-height:250px; object-fit:cover; border-radius:8px; margin-bottom:8px;">
+    <img src="${r.imageUrl}" style="width:100%; max-height:250px; object-fit:cover; margin-bottom:10px;">
     <p><strong>Description:</strong> ${escapeHtml(r.description)}</p>
+
     <h4>Ingredients:</h4>
-    <ul>${(r.ingredients || []).map(i => `<li>${escapeHtml(i)}</li>`).join("")}</ul>
+    <ul>${r.ingredients.map(i => `<li>${escapeHtml(i)}</li>`).join("")}</ul>
+
     <h4>Steps:</h4>
-    <ol>${(r.steps || []).map(s => `<li>${escapeHtml(s)}</li>`).join("")}</ol>
-    <p><strong>Prep: |</strong> ${r.prepTime} mins &nbsp; <strong>Difficulty:</strong> ${escapeHtml(r.difficulty)}</p>
+    <ol>${r.steps.map(s => `<li>${escapeHtml(s)}</li>`).join("")}</ol>
+
+    <p><strong>Prep:</strong> ${r.prepTime} mins</p>
   `;
+
   detailModal.classList.remove("hide-box");
 }
+
+closeDetail.addEventListener("click", () => detailModal.classList.add("hide-box"));
+
+detailModal.addEventListener("click", e => {
+  if (e.target === detailModal) detailModal.classList.add("hide-box");
+});
+
+searchInput.addEventListener("input", renderRecipes);
+difficultyFilter.addEventListener("change", renderRecipes);
+timeFilter.addEventListener("input", renderRecipes);
 
 document.getElementById("backBtn").addEventListener("click", () => {
   searchInput.value = "";
   difficultyFilter.value = "all";
+  timeFilter.value = "";
   renderRecipes();
 });
-
-closeDetail.addEventListener("click", () => detailModal.classList.add("hide-box"));
-detailModal.addEventListener("click", e => { if(e.target === detailModal) detailModal.classList.add("hide-box"); });
-
-if (searchInput) searchInput.addEventListener("input", renderRecipes);
-if (difficultyFilter) difficultyFilter.addEventListener("change", renderRecipes);
 
 renderRecipes();
